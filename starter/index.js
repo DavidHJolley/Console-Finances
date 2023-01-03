@@ -110,20 +110,21 @@ var finances = [
 
 Your final code should print the analysis to the console.*/
 
-const numMonths = finances.length;
+const numMonths = finances.length; // Determine the number of months of financial data
 
 let netTotal = 0;
 let totalChange = 0;
-let greatestIncrease = { date: "", amount: 0 };
-let greatestDecrease = { date: "", amount: 0 };
+let greatestIncrease = { date: "", amount: 0 }; // Initialize greatest increase to an empty date and 0 amount
+let greatestDecrease = { date: "", amount: 0 }; // Initialize greatest decrease to an empty date and 0 amount
 
+ // Iterate through each month of financial data
 for (let i = 0; i < numMonths; i++) {
-  const [date, amount] = finances[i];
-  netTotal += amount;
-  if (i > 0) {
-    const change = amount - finances[i - 1][1];
-    totalChange += change;
-    if (change > greatestIncrease.amount) {
+  const [date, amount] = finances[i]; 
+  netTotal += amount; // Add the amount for the current month to the net total
+  if (i > 0) {        // If this is not the first month, calculate the change from the previous month
+    const change = amount - finances[i - 1][1];  // Calculate the change in amount from the previous month
+    totalChange += change; // Add the change to the total change
+    if (change > greatestIncrease.amount) {   // If the change is greater than the current greatest increase, update the greatest increase
       greatestIncrease.date = date;
       greatestIncrease.amount = change;
     } else if (change < greatestDecrease.amount) {
@@ -133,10 +134,10 @@ for (let i = 0; i < numMonths; i++) {
   }
 }
 
-const averageChange = totalChange / (numMonths - 1);
-const averageChangeRounded = averageChange.toFixed(2);
+const averageChange = totalChange / (numMonths - 1); // Calculate the average change in amount between months
+const averageChangeRounded = averageChange.toFixed(2); // Round the average change to 2 decimal places
 
-console.log(`Number of months: ${numMonths}`);
+console.log(`Number of months: ${numMonths}`); 
 console.log(`Net total: ${netTotal}`);
 console.log(`Average change: ${averageChangeRounded}`);
 console.log(`Greatest increase: ${greatestIncrease.date} (${greatestIncrease.amount})`);
